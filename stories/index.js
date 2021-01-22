@@ -13,6 +13,11 @@ import InterviewerList from "components/InterviewerList";
 import Appointment from "components/Appointment/Index";
 import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
+import Show from "components/Appointment/Show";
+import Confirm from "components/Appointment/Confirm";
+import Status from "components/Appointment/Status";
+import Error from "components/Appointment/Error";
+import Form from "components/Appointment/Form";
 
 // These are the Button stories:
 storiesOf("Button", module)
@@ -138,6 +143,11 @@ storiesOf("InterviewerList", module)
 
 //Appointment Stories Start Now
 
+const student = "Lydia Miller-Jones";
+const deleteMessage = "Delete the Appointment";
+const deleting = "Deleting";
+const couldNotDelete = "Could not delete appointment";
+
 storiesOf("Appointment", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }],
@@ -145,4 +155,10 @@ storiesOf("Appointment", module)
   .add("Appointment", () => <Appointment />)
   .add("Appointment with Time", () => <Appointment time="12pm" />)
   .add("Header", () => <Header time="12pm" />)
-  .add("Empty", () => <Empty onAdd={action("onAdd")} />);
+  .add("Empty", () => <Empty onAdd={action("onAdd")} />)
+  .add("Show", () => <Show onEdit={action("onEdit")} />)
+  .add("Show", () => <Show onDelete={action("onDelete")} />)
+  .add("Confirm", () => <Confirm onConfirm={action("onConifrm")} />)
+  .add("Confirm", () => <Confirm onCancel={action("onCancel")} />)
+  .add("Status", () => <Status />)
+  .add("Error", () => <Error onClose={action("onClose")} />);
