@@ -144,7 +144,7 @@ storiesOf("InterviewerList", module)
 //Appointment Stories Start Now
 
 const student = "Lydia Miller-Jones";
-const deleteMessage = "Delete the Appointment";
+const deleteMessage = "Delete the Appointment?";
 const deleting = "Deleting";
 const couldNotDelete = "Could not delete appointment";
 
@@ -156,9 +156,44 @@ storiesOf("Appointment", module)
   .add("Appointment with Time", () => <Appointment time="12pm" />)
   .add("Header", () => <Header time="12pm" />)
   .add("Empty", () => <Empty onAdd={action("onAdd")} />)
-  .add("Show", () => <Show onEdit={action("onEdit")} />)
-  .add("Show", () => <Show onDelete={action("onDelete")} />)
-  .add("Confirm", () => <Confirm onConfirm={action("onConifrm")} />)
-  .add("Confirm", () => <Confirm onCancel={action("onCancel")} />)
-  .add("Status", () => <Status />)
-  .add("Error", () => <Error onClose={action("onClose")} />);
+  .add("Show", () => (
+    <Show
+      onEdit={action("onEdit")}
+      onDelete={action("onDelete")}
+      interviewer={interviewer}
+      student={student}
+    />
+  ))
+  .add("Confirm", () => (
+    <Confirm
+      onConfirm={action("onConfirm")}
+      onCancel={action("onCancel")}
+      deleteMessage={deleteMessage}
+    />
+  ))
+  .add("Status", () => <Status deleting={deleting} />)
+  .add("Error", () => (
+    <Error onClose={action("onClose")} couldNotDelete={couldNotDelete} />
+  ));
+
+const name = "";
+
+storiesOf("Form", module)
+  .add("Edit", () => (
+    <Form
+      name={name}
+      interviewers={interviewers}
+      interviewer={Number}
+      onSave={"onSave"}
+      onCancel={"onCancel"}
+    />
+  ))
+  .add("Create", () => (
+    <Form interviewers={interviewers} onSave={"onSave"} onCancel={"onCancel"} />
+  ))
+
+  .add("Create", () => <Form onCancel={"onCancel"} />);
+
+storiesOf("Create", module)
+  .add("Form", () => <Form onSave={"onSave"} />)
+  .add("Form", () => <Form onCancel={"onCancel"} />);
