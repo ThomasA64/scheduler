@@ -190,10 +190,4 @@ storiesOf("Form", module)
   ))
   .add("Create", () => (
     <Form interviewers={interviewers} onSave={"onSave"} onCancel={"onCancel"} />
-  ))
-
-  .add("Create", () => <Form onCancel={"onCancel"} />);
-
-storiesOf("Create", module)
-  .add("Form", () => <Form onSave={"onSave"} />)
-  .add("Form", () => <Form onCancel={"onCancel"} />);
+  ));
