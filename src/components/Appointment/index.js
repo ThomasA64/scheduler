@@ -8,6 +8,8 @@ export default function Appointment(props) {
   return (
     <article className="appointment">
       <Header />
+      {props.interview ? <Show student={props.interview.student} /> : <Empty />}
     </article>
   );
 }
+// condition ? exprIfTrue : exprIfFalse

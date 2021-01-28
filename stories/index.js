@@ -13,7 +13,7 @@ import DayList from "components/DayList";
 import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList";
 
-import Appointment from "components/Appointment/Index";
+import Appointment from "components/Appointment";
 import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
@@ -154,11 +154,8 @@ storiesOf("InterviewerList", module)
 
 //Appointment Stories Start Now
 
-const student = {
-  id: 1,
-  name: "Lydia Miller-Jones",
-  avatar: "https://i.imgur.com/LpaY82x.png",
-};
+const student = "Lydia Miller-Jones";
+
 const deleteMessage = "Delete the Appointment?";
 const deleting = "Deleting";
 const couldNotDelete = "Could not delete appointment";
@@ -216,4 +213,15 @@ storiesOf("Appointment", module)
       <Appointment id={1} time="12pm" />
       <Appointment id="last" time="1pm" />
     </Fragment>
+  ))
+  .add("Appointment Booked", () => (
+    <Fragment>
+      <Appointment
+        id={1}
+        time="12pm"
+        interview={{ student: "Lydia Miller-Jones", interviewer }}
+      />
+      <Appointment id="last" time="1pm" />
+    </Fragment>
   ));
+//condition ? exprIfTrue : exprIfFalse
