@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
@@ -6,10 +6,13 @@ import { action } from "@storybook/addon-actions";
 import "index.scss";
 
 import Button from "components/Button";
+
 import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
+
 import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList";
+
 import Appointment from "components/Appointment/Index";
 import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
@@ -96,22 +99,30 @@ storiesOf("InterviewerListItem", module)
       avatar={interviewer.avatar}
     />
   ))
-  .add("Selected", () => (
-    <InterviewerListItem
-      id={interviewer.id}
-      name={interviewer.name}
-      avatar={interviewer.avatar}
-      selected
-    />
-  ))
-  .add("Clickable", () => (
-    <InterviewerListItem
-      id={interviewer.id}
-      name={interviewer.name}
-      avatar={interviewer.avatar}
-      setInterviewer={(event) => action("setInterviewer")(interviewer.id)}
-    />
-  ));
+  // .add("Selected", () => (
+  //   <InterviewerListItem
+  //     id={interviewer.id}
+  //     name={interviewer.name}
+  //     avatar={interviewer.avatar}
+  //     selected
+  //   />
+  // ))
+  .add("Clickable", () =>
+    (
+      <InterviewerListItem
+        id={interviewer.id}
+        name={interviewer.name}
+        avatar={interviewer.avatar}
+        setInterviewer={(event) => action("setInterviewer")(interviewer.id)}
+      />
+    ).add("Preselected", () => (
+      <InterviewerList
+        interviewers={interviewers}
+        interviewer={3}
+        setInterviewer={action("setInterviewer")}
+      />
+    ))
+  );
 
 // InterviewerList stories start here, including the sample data stored in an array of objects.
 
@@ -143,10 +154,15 @@ storiesOf("InterviewerList", module)
 
 //Appointment Stories Start Now
 
-const student = "Lydia Miller-Jones";
+const student = {
+  id: 1,
+  name: "Lydia Miller-Jones",
+  avatar: "https://i.imgur.com/LpaY82x.png",
+};
 const deleteMessage = "Delete the Appointment?";
 const deleting = "Deleting";
 const couldNotDelete = "Could not delete appointment";
+// const name = "";
 
 storiesOf("Appointment", module)
   .addParameters({
@@ -174,20 +190,30 @@ storiesOf("Appointment", module)
   .add("Status", () => <Status deleting={deleting} />)
   .add("Error", () => (
     <Error onClose={action("onClose")} couldNotDelete={couldNotDelete} />
-  ));
+  ))
 
-const name = "";
-
-storiesOf("Form", module)
   .add("Edit", () => (
     <Form
-      name={name}
+      name="Stacy"
       interviewers={interviewers}
-      interviewer={Number}
-      onSave={"onSave"}
-      onCancel={"onCancel"}
+      interviewer={3}
+      // setInterviewer={(event) => action("setInterviewer")(interviewer.id)}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
     />
   ))
+
   .add("Create", () => (
-    <Form interviewers={interviewers} onSave={"onSave"} onCancel={"onCancel"} />
+    <Form
+      interviewers={interviewers}
+      // setInterviewer={(event) => action("setInterviewer")(interviewer.id)}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
+    />
+  ))
+  .add("Appointment Empty", () => (
+    <Fragment>
+      <Appointment id={1} time="12pm" />
+      <Appointment id="last" time="1pm" />
+    </Fragment>
   ));

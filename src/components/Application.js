@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "components/Application.scss";
-import DayList from "components/DayList"
+import DayList from "components/DayList";
 
 const days = [
   {
@@ -20,9 +20,64 @@ const days = [
   },
 ];
 
+const appointments = [
+  {
+    id: 1,
+    time: "12pm",
+  },
+  {
+    id: 2,
+    time: "1pm",
+    interview: {
+      student: "Lydia Miller-Jones",
+      interviewer: {
+        id: 1,
+        name: "Sylvia Palmer",
+        avatar: "https://i.imgur.com/LpaY82x.png",
+      },
+    },
+  },
+  {
+    id: 3,
+    time: "1pm",
+    interview: {
+      student: "Constance",
+      interviewer: {
+        id: 1,
+        name: "Sylvia Palmer",
+        avatar: "https://i.imgur.com/LpaY82x.png",
+      },
+    },
+  },
+  {
+    id: 4,
+    time: "1pm",
+    interview: {
+      student: "Hello",
+      interviewer: {
+        id: 1,
+        name: "Sylvia Palmer",
+        avatar: "https://i.imgur.com/LpaY82x.png",
+      },
+    },
+  },
+  {
+    id: 5,
+    time: "1pm",
+    interview: {
+      student: "Austin",
+      interviewer: {
+        id: 1,
+        name: "Sylvia Palmer",
+        avatar: "https://i.imgur.com/LpaY82x.png",
+      },
+    },
+  },
+];
+
 export default function Application(props) {
-  const initialDay = "Monday"
-  const [day, setDay] = useState(initialDay)
+  const initialDay = "Monday";
+  const [day, setDay] = useState(initialDay);
   return (
     <main className="layout">
       <section className="sidebar">
@@ -38,12 +93,7 @@ export default function Application(props) {
             day={"Monday"}
             setDay={(day) => console.log(day)}
           />
-          <DayList
-            days={days}
-            day={day}
-            setDay={setDay}
-            
-          />
+          <DayList days={days} day={day} setDay={setDay} />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
