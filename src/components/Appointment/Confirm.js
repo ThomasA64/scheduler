@@ -3,6 +3,7 @@ import Button from "components/Button";
 
 export default function Confirm(props) {
   const deleteMessage = props.deleteMessage;
+  const bookInterview = props.bookInterview;
   return (
     <main className="appointment__card appointment__card--confirm">
       <h1 className="text--semi-bold">{deleteMessage}</h1>

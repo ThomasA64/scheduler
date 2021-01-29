@@ -14,11 +14,6 @@ export default function Form(props) {
     reset();
     props.onCancel();
   };
-  const save = function () {
-    {
-      props.onSave(name, interviewer);
-    }
-  };
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -31,16 +26,13 @@ export default function Form(props) {
             placeholder="Enter Student Name"
             onChange={(event) => setName(event.target.value)}
             value={name}
-
-            /*
-          This must be a controlled component
-        */
           />
         </form>
         <InterviewerList
           interviewers={props.interviewers}
           interviewer={interviewer}
           onChange={setInterviewer}
+          setInterviewer={setInterviewer}
         />
       </section>
       <section className="appointment__card-right">
@@ -49,7 +41,7 @@ export default function Form(props) {
             Cancel
           </Button>
 
-          <Button confirm onClick={save}>
+          <Button confirm onClick={() => props.onSave(name, interviewer)}>
             Save
           </Button>
         </section>
