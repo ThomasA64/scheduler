@@ -23,9 +23,9 @@ export default function Appointment(props) {
     };
     console.log(interview);
     props.bookInterview(props.id, interview);
-    // transition(SHOW);
+    transition(SHOW);
   };
-
+  console.log(props);
   return (
     <article className="appointment">
       <Header />
