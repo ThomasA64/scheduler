@@ -34,11 +34,4 @@ export function getInterviewersForDay(state, day) {
   let interview = arrOfInterviewers.map((interV) => state.interviewers[interV]);
   return interview;
 }
-// {
-//   "student": "Lydia Miller-Jones",
-//   "interviewer": {
-//     "id": 1,
-//     "name": "Sylvia Palmer",
-//     "avatar": "https://i.imgur.com/LpaY82x.png"
-//   }
-// }
+

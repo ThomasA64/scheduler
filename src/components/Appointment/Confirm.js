@@ -2,8 +2,7 @@ import React from "react";
 import Button from "components/Button";
 
 export default function Confirm(props) {
-  const deleteMessage = props.deleteMessage;
-  const bookInterview = props.bookInterview;
+  const deleteMessage = 'ARE YOU SURE YOU WOULD LIKE TO DELETE?'
   return (
     <main className="appointment__card appointment__card--confirm">
       <h1 className="text--semi-bold">{deleteMessage}</h1>
