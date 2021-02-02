@@ -27,16 +27,16 @@ export default function Application(props) {
       [id]: appointment,
     };
     // console.log("appointments", appointments);
-    setState({
-      ...state,
-      appointments,
-    });
+  
     console.log("interview", interview);
     console.log("state", state);
     const body = {interview}
     console.log('body', body)
-  return axios.put(`/api/appointments/${id}`, body);
-  }
+  return axios.put(`/api/appointments/${id}`, body).then(() => setState({
+    ...state,
+    appointments,
+  }))};
+
   function deleteData(id) {
     const appointment = {
       ...state.appointments[id],
@@ -46,11 +46,10 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment,
     };
-    setState({
-      ...state,
-      appointments,
-    });
-   return axios.delete(`/api/appointments/${id}`)
+   return axios.delete(`/api/appointments/${id}`).then(() => setState({
+    ...state,
+    appointments,
+  }))
   }
   const appointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
