@@ -56,7 +56,7 @@ export default function Appointment(props) {
           onEdit={() => transition(EDIT)}
         />
       )}
-      {mode === SAVING && <Status/>}
+      {mode === SAVING && <Status saving={'SAVING'}/>}
       {mode === CONFIRM && <Confirm onConfirm ={del}/>}
       {mode === DELETING && <Status deleting={'DELETING'}/>}
       {mode === EDIT && (
