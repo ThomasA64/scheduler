@@ -36,3 +36,8 @@ npm test
 ```sh
 npm run storybook
 ```
+## Package Dependencies
+
+axios
+@testing-library/react-hooks
+react-test-renderer

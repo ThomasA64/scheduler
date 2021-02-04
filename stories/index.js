@@ -40,18 +40,17 @@ storiesOf("Button", module)
   ));
 
 // These are the DayListItem Stories:
-storiesOf("DayListItem", module) //Initiates Storybook and registers our DayListItem component
+storiesOf("DayListItem", module) 
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
-  }) // Provides the default background color for our component
-  .add("Unselected", () => <DayListItem name="Monday" spots={5} />) // To define our stories, we call add() once for each of our test states to generate a story
+  }) 
+  .add("Unselected", () => <DayListItem name="Monday" spots={5} />) 
   .add("Selected", () => <DayListItem name="Monday" spots={5} selected />)
   .add("Full", () => <DayListItem name="Monday" spots={0} />)
   .add("Clickable", () => (
-    <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} /> // action() allows us to create a callback that appears in the actions panel when clicked
+    <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} /> 
   ));
 
-// this is the days array of objects passed into DayList
 const days = [
   {
     id: 1,
@@ -99,14 +98,7 @@ storiesOf("InterviewerListItem", module)
       avatar={interviewer.avatar}
     />
   ))
-  // .add("Selected", () => (
-  //   <InterviewerListItem
-  //     id={interviewer.id}
-  //     name={interviewer.name}
-  //     avatar={interviewer.avatar}
-  //     selected
-  //   />
-  // ))
+
   .add("Clickable", () =>
     (
       <InterviewerListItem
@@ -159,7 +151,6 @@ const student = "Lydia Miller-Jones";
 const deleteMessage = "Delete the Appointment?";
 const deleting = "Deleting";
 const couldNotDelete = "Could not delete appointment";
-// const name = "";
 
 storiesOf("Appointment", module)
   .addParameters({
@@ -194,7 +185,6 @@ storiesOf("Appointment", module)
       name="Stacy"
       interviewers={interviewers}
       interviewer={3}
-      // setInterviewer={(event) => action("setInterviewer")(interviewer.id)}
       onSave={action("onSave")}
       onCancel={action("onCancel")}
     />
@@ -203,7 +193,6 @@ storiesOf("Appointment", module)
   .add("Create", () => (
     <Form
       interviewers={interviewers}
-      // setInterviewer={(event) => action("setInterviewer")(interviewer.id)}
       onSave={action("onSave")}
       onCancel={action("onCancel")}
     />
@@ -224,4 +213,3 @@ storiesOf("Appointment", module)
       <Appointment id="last" time="1pm" />
     </Fragment>
   ));
-//condition ? exprIfTrue : exprIfFalse
