@@ -3,6 +3,8 @@ import axios from "axios"
 
 const useApplicationData = function () {
 
+// This hook deals with all the functions that manage the state used in the Application.js file.
+
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -10,14 +12,11 @@ const useApplicationData = function () {
   });
 
 
+  // This function updates all the spots available on the sidebar for the scheduler app. 
   const upDateSpots = function (dayID, action) {
     const oldDay = state.days.find(day => day.id === dayID)
     let newSpots = action === 'increment' ? oldDay.spots+1 : oldDay.spots-1
-    // oldDay.appointments.forEach((appID) => {
-    //   if (state.appointments[appID].interview === null) {
-    //     newSpots += 1
-    //   }
-    // })
+   
     const day = {
       ...oldDay,
       spots: newSpots
@@ -25,17 +24,10 @@ const useApplicationData = function () {
     const days = [...state.days]
     const dayIndex = state.days.findIndex((dayEl) => dayEl.id === dayID)
     days.splice(dayIndex, 1, day)
-    // setState({...state, days})
     return days
-//TODO: Need to get the Spots key out of the Days object and update that
-//TODO: There has to be a maximum of 5 spots. 
-//* Possibly count how many ids.
-//* Should a ForIn be used to loop throught the object? 
-// const ds = days.spots
-// * Should that value change when the state is changed?
-
   }
 
+  // This function allows the interview's Student name and Interviewer to be sent to the API and book a New Interview
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -54,9 +46,9 @@ const useApplicationData = function () {
       appointments,
       days
     }))
-    // .then(() => upDateSpots(dayID))
   };
-  //* Revisit function
+
+  // This function allows the deletion of an interview.
   function deleteData(id) {
     const appointment = {
       ...state.appointments[id],
@@ -76,7 +68,7 @@ const useApplicationData = function () {
    }))
   }
   
-  
+  // This function calls to the API and stores gets all of the info from the API to show up on the schedule. 
   const setDay = (day) => setState({ ...state, day });
   useEffect(() => {
     console.log("Use Effect is working");

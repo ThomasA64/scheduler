@@ -8,8 +8,8 @@ import Form from "components/Appointment/Form";
 import Status from "components/Appointment/Status";
 import Confirm from "components/Appointment/Confirm"
 import Error from "components/Appointment/Error"
-import getInterviewersforDay from "../../helpers/selectors";
 
+// This is the Appointment Component and it deals with useVisual mode and changing between modes for the functionality of the app. 
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -26,6 +26,7 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
+  // This function allows an interview to be saved.
   const save = function (name, interviewer) {
     const interview = {
       student: name,
@@ -41,6 +42,7 @@ export default function Appointment(props) {
     .catch(() => transition(ERROR_SAVE, true))
   };
 
+  // This function allows an interview to be deleted. 
   const del = function () {
     const id = props.id
     
@@ -52,11 +54,10 @@ export default function Appointment(props) {
     .catch(() => transition(ERROR_DELETE, true))
   }
 
-  console.log(props);
   return (
     <article className="appointment">
       <Header time={props.time}/>
-      {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
+      {mode === EMPTY && props.time !== '5pm' && <Empty onAdd={() => transition(CREATE)} />}
       {mode === CREATE && (
         <Form interviewers={props.interviewers} onCancel={back} onSave={save} />
       )}
@@ -69,7 +70,7 @@ export default function Appointment(props) {
         />
       )}
       {mode === SAVING && <Status saving={'SAVING'}/>}
-      {mode === CONFIRM && <Confirm onConfirm ={del}/>}
+      {mode === CONFIRM && <Confirm onConfirm ={del} onCancel={back}/>}
       {mode === DELETING && <Status deleting={'DELETING'}/>}
       {mode === EDIT && (
         <Form interviewers={props.interviewers} name={props.interview.student} interviewer={props.interview.interviewer.id} onCancel={back} onSave={save} />
