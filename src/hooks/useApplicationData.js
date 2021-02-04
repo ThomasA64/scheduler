@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios"
 
 const useApplicationData = function () {
@@ -71,7 +71,6 @@ const useApplicationData = function () {
   // This function calls to the API and stores gets all of the info from the API to show up on the schedule. 
   const setDay = (day) => setState({ ...state, day });
   useEffect(() => {
-    console.log("Use Effect is working");
   
     Promise.all([
       axios.get("/api/days"),
@@ -84,7 +83,6 @@ const useApplicationData = function () {
         appointments: res[1].data,
         interviewers: res[2].data,
       }));
-      console.log(res);
     });
   }, []);
 

@@ -9,8 +9,6 @@ import Status from "components/Appointment/Status";
 import Confirm from "components/Appointment/Confirm"
 import Error from "components/Appointment/Error"
 
-// This is the Appointment Component and it deals with useVisual mode and changing between modes for the functionality of the app. 
-
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
@@ -32,8 +30,6 @@ export default function Appointment(props) {
       student: name,
       interviewer,
     };
-    console.log(interview);
-
     transition(SAVING)
 
     props
@@ -53,6 +49,8 @@ export default function Appointment(props) {
     .then(() => transition(EMPTY))
     .catch(() => transition(ERROR_DELETE, true))
   }
+
+  // This is the Appointment Component and it deals with useVisual mode and changing between modes for the functionality of the app. 
 
   return (
     <article className="appointment">

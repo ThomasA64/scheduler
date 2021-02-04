@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Empty(props) {
-  const bookInterview = props.bookInterview;
+  
   return (
     <main className="appointment__add">
       <img
